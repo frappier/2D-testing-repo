@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
-<<<<<<< HEAD
     [SerializeField]
     private AudioClip _laserSoundClip;
     [SerializeField]
@@ -42,8 +41,6 @@ public class Player : MonoBehaviour
 
     private AudioSource _audioSource;
 
-=======
->>>>>>> parent of b21bbce (Added laser sound clip)
     private UIManager _uiManager;
     
    
@@ -54,11 +51,8 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-<<<<<<< HEAD
         _audioSource = GetComponent<AudioSource>();
         
-=======
->>>>>>> parent of b21bbce (Added laser sound clip)
 
         if(_spawnManager == null)
         {
@@ -70,15 +64,12 @@ public class Player : MonoBehaviour
             Debug.Log("The UI Managaer is NULL");
         }
 
-<<<<<<< HEAD
         if(_audioSource == null)
         {
             Debug.LogError("The AudioSourse in the Player is NULL.");
         }
                        
 
-=======
->>>>>>> parent of b21bbce (Added laser sound clip)
         _rightEngine.SetActive(false);
         _leftEngine.SetActive(false);
         
@@ -144,12 +135,9 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
-<<<<<<< HEAD
 
         //_audioSource.Play();
         _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
-=======
->>>>>>> parent of b21bbce (Added laser sound clip)
              
     }
 
