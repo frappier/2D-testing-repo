@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
+    private float _increasedSpeed = 1.5f;
+    [SerializeField]
     private int _speedBoostMultiplier = 2;
     [SerializeField]
     private GameObject _laserPrefab;
@@ -15,6 +17,12 @@ public class Player : MonoBehaviour
     private GameObject _tripleShotPrefab;
     [SerializeField]
     private GameObject _shieldVisualizer;
+    [SerializeField]
+    private GameObject _shieldVisualizer1;
+    [SerializeField]
+    private GameObject _shieldVisualizer2;
+    [SerializeField]
+    private int _shieldHits = 3;
     [SerializeField]
     private float _fireRate = 0.15f;
     [SerializeField]
@@ -94,9 +102,20 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
                 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);   //putting the direction into a variable to use in the Translate
-       
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speed *= _increasedSpeed;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speed /= _increasedSpeed;
+        }
+        
+        
         transform.Translate(direction * _speed * Time.deltaTime);
-       
+        
+                      
         //Restricting on the Y axis using Math.Clamp
         //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.8f, 1.5f), 0);
         if(transform.position.y > 1.5f)
@@ -171,18 +190,55 @@ public class Player : MonoBehaviour
 
     public void ShieldPowerup()
     {
+        _shieldHits = 3;
         _isShieldActive = true;
         _shieldVisualizer.SetActive(true);
         _audioSource.PlayOneShot(_powerupSoundClip);
     }
-
+        
     public void Damage()
     {
+        
+       /*if (_isShieldActive == true && _shieldHits >= 2)
+        {
+            _shieldVisualizer.SetActive(false);
+            _shieldVisualizer1.SetActive(true);
+            _shieldHits -= 1;
+            return;
+        }
+        else if (_isShieldActive == true && _shieldHits >= 1)
+        {
+            _shieldVisualizer1.SetActive(false);
+            _shieldVisualizer2.SetActive(true);
+            _shieldHits -= 1;
+            return;
+        }
+        else if (_isShieldActive == true && _shieldHits <= 0)
+        { 
+            _isShieldActive = false;
+            _shieldVisualizer2.SetActive(false);
+            return;
+        }*/
+
         if (_isShieldActive == true)
         {
-            _isShieldActive = false;
-            _shieldVisualizer.SetActive(false);
-            return;
+            switch(_shieldHits)
+            {
+                case 2 - 3:
+                    _shieldVisualizer.SetActive(false);
+                    _shieldVisualizer1.SetActive(true);
+                    _shieldHits -= 1;
+                    break;
+                case 1:
+                    _shieldVisualizer1.SetActive(false);
+                    _shieldVisualizer2.SetActive(true);
+                    _shieldHits -= 1;
+                    break;
+                case 0:
+                    _isShieldActive = false;
+                    _shieldVisualizer2.SetActive(false);
+                    break;
+            }
         }
                 
         _lives -= 1;
