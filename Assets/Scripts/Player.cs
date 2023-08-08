@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisualizer2;
     [SerializeField]
-    private int _shieldHits = 3;
+    private int _shieldHits;
     [SerializeField]
     private float _fireRate = 0.15f;
     [SerializeField]
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         
-       /*if (_isShieldActive == true && _shieldHits >= 2)
+       if (_isShieldActive == true && _shieldHits >= 2)
         {
             _shieldVisualizer.SetActive(false);
             _shieldVisualizer1.SetActive(true);
@@ -218,29 +218,9 @@ public class Player : MonoBehaviour
             _isShieldActive = false;
             _shieldVisualizer2.SetActive(false);
             return;
-        }*/
-
-        if (_isShieldActive == true)
-        {
-            switch(_shieldHits)
-            {
-                case 2 - 3:
-                    _shieldVisualizer.SetActive(false);
-                    _shieldVisualizer1.SetActive(true);
-                    _shieldHits -= 1;
-                    break;
-                case 1:
-                    _shieldVisualizer1.SetActive(false);
-                    _shieldVisualizer2.SetActive(true);
-                    _shieldHits -= 1;
-                    break;
-                case 0:
-                    _isShieldActive = false;
-                    _shieldVisualizer2.SetActive(false);
-                    break;
-            }
         }
-                
+
+                      
         _lives -= 1;
 
         if (_lives == 2)
@@ -262,6 +242,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    
     public void AddScore(int points)
     {
         _score += points;
