@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _speedBoostMultiplier = 2;
     [SerializeField]
+    private int _ammoCount = 15;
+    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
@@ -146,17 +148,25 @@ public class Player : MonoBehaviour
         _nextFire = Time.time + _fireRate;
        
 
-        if (_isTripleshotActive == true)
+        if (_isTripleshotActive == true && _ammoCount > 0)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _ammoCount -= 3;
+            UpdateAmmo(_ammoCount);
         }
-        else
+        else if (_ammoCount > 0)
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            _ammoCount -= 1;
+            UpdateAmmo(_ammoCount);
         }
 
         //_audioSource.Play();
-        _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
+        if (_ammoCount > 0)
+        {
+            _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
+        }
+        //_audioSource.PlayOneShot(_laserSoundClip, 0.7f);
              
     }
 
@@ -247,5 +257,10 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScore(_score);
+    }
+
+    public void UpdateAmmo(int ammo)
+    {
+        _uiManager.UpdatePlayerAmmo(ammo);
     }
 }
