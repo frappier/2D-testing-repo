@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
         _nextFire = Time.time + _fireRate;
        
 
-        if (_isTripleshotActive == true && _ammoCount > 0)
+        if (_isTripleshotActive && _ammoCount > 0)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _ammoCount -= 3;
@@ -161,13 +161,11 @@ public class Player : MonoBehaviour
             UpdateAmmo(_ammoCount);
         }
 
-        //_audioSource.Play();
         if (_ammoCount > 0)
         {
             _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
         }
-        //_audioSource.PlayOneShot(_laserSoundClip, 0.7f);
-             
+            
     }
 
     public void TripleShot()
