@@ -203,6 +203,13 @@ public class Player : MonoBehaviour
         _shieldVisualizer.SetActive(true);
         _audioSource.PlayOneShot(_powerupSoundClip);
     }
+
+    public void UpdateAmmo()
+    {
+        _ammoCount = 15;
+        _audioSource.PlayOneShot(_powerupSoundClip);
+        UpdateAmmo(_ammoCount);
+    }
         
     public void Damage()
     {
@@ -259,6 +266,10 @@ public class Player : MonoBehaviour
 
     public void UpdateAmmo(int ammo)
     {
+        if (ammo < 0)
+        {
+            ammo = 0;
+        }
         _uiManager.UpdatePlayerAmmo(ammo);
     }
 }
