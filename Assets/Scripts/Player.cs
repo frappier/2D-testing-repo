@@ -152,13 +152,13 @@ public class Player : MonoBehaviour
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _ammoCount -= 3;
-            UpdateAmmo(_ammoCount);
+            UpdateAmmoCount(_ammoCount);
         }
         else if (_ammoCount > 0)
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
             _ammoCount -= 1;
-            UpdateAmmo(_ammoCount);
+            UpdateAmmoCount(_ammoCount);
         }
 
         if (_ammoCount > 0)
@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
     {
         _ammoCount = 15;
         _audioSource.PlayOneShot(_powerupSoundClip);
-        UpdateAmmo(_ammoCount);
+        UpdateAmmoCount(_ammoCount);
     }
         
     public void Damage()
@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
-    public void UpdateAmmo(int ammo)
+    public void UpdateAmmoCount(int ammo)
     {
         if (ammo < 0)
         {
