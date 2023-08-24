@@ -210,7 +210,32 @@ public class Player : MonoBehaviour
         _audioSource.PlayOneShot(_powerupSoundClip);
         UpdateAmmoCount(_ammoCount);
     }
-        
+
+    public void AddLife()
+    {
+        if(_lives < 3)
+        {
+            _lives += 1;
+            _audioSource.PlayOneShot(_powerupSoundClip);
+            _uiManager.UpdateLives(_lives);
+
+            if (_lives > 2)
+            {
+                _rightEngine.SetActive(false);
+                _leftEngine.SetActive(false);
+            }
+            else if (_lives == 2)
+            {
+                _leftEngine.SetActive(false);
+                _rightEngine.SetActive(true);
+            }
+            else if (_lives == 1)
+            {
+                _leftEngine.SetActive(true);
+            }
+        }
+    }
+
     public void Damage()
     {
         
@@ -238,6 +263,7 @@ public class Player : MonoBehaviour
                       
         _lives -= 1;
 
+        
         if (_lives == 2)
         {
             _rightEngine.SetActive(true);
@@ -257,7 +283,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+
     public void AddScore(int points)
     {
         _score += points;
