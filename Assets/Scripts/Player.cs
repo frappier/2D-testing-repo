@@ -229,10 +229,6 @@ public class Player : MonoBehaviour
                 _leftEngine.SetActive(false);
                 _rightEngine.SetActive(true);
             }
-            else if (_lives == 1)
-            {
-                _leftEngine.SetActive(true);
-            }
         }
     }
 
