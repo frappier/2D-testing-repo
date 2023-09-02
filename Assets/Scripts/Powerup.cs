@@ -8,7 +8,7 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _powerupSpeed = 3.0f;
     [SerializeField]
-    private int _powerupID;  // 0 = Triple Shot,  1 = Speed,  2 = Shields,  3 = Ammo
+    private int _powerupID;  // 0 = Triple Shot,  1 = Speed,  2 = Shields,  3 = Ammo, 4 = Add Life, 5 = Power Bomb
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,9 @@ public class Powerup : MonoBehaviour
                         break;
                     case 4:
                         player.AddLife();
+                        break;
+                    case 5:
+                        player.PowerBomb();
                         break;
                 }
                                                 

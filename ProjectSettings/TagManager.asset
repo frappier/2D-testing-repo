@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Laser
+  - PowerBomb
   layers:
   - Default
   - TransparentFX
