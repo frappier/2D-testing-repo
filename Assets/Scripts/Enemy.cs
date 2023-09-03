@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
             _enemyDestoyedAnim.SetTrigger("OnEnemyDeath");
             _enemySpeed = 0;
             _audioSource.Play();
-            Destroy(this.gameObject, 2.8f);
+            Destroy(this.gameObject, 2.0f);
         }
         else if(other.tag == "Laser")
         {

@@ -14,13 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _ammoCount = 15;
     [SerializeField]
-    private int _powerBombCount = 0;
-    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
-    private GameObject _powerBombShotprefab;
+    private GameObject _fireBallprefab;
     [SerializeField]
     private GameObject _shieldVisualizer;
     [SerializeField]
@@ -44,7 +42,7 @@ public class Player : MonoBehaviour
 
     private bool _isTripleshotActive = false;
     private bool _isShieldActive = false;
-    private bool _isPowerBombActive = false;
+    private bool _isFireBallActive = false;
 
     [SerializeField]
     private int _score;
@@ -152,10 +150,9 @@ public class Player : MonoBehaviour
     {
         _nextFire = Time.time + _fireRate;
        
-        if (_isPowerBombActive)// && _powerBombCount > 0)
+        if (_isFireBallActive)
         {
-            Instantiate(_powerBombShotprefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
-            //_powerBombCount --;
+            Instantiate(_fireBallprefab, transform.position + new Vector3(0, 2.0f, 0), Quaternion.identity);            
         }
         else if (_isTripleshotActive && _ammoCount > 0)
         {
@@ -190,18 +187,17 @@ public class Player : MonoBehaviour
         _isTripleshotActive = false;
     }
 
-    public void PowerBomb()
+    public void FireBall()
     {
-        _isPowerBombActive = true;
-        //_powerBombCount = 1;
+        _isFireBallActive = true;
         _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
-        StartCoroutine(PowerBombPowerDownRoutine());        
+        StartCoroutine(FireBallPowerDownRoutine());        
     }
 
-    IEnumerator PowerBombPowerDownRoutine()
+    IEnumerator FireBallPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _isPowerBombActive = false;
+        _isFireBallActive = false;
     }
 
 

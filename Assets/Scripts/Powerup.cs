@@ -53,7 +53,7 @@ public class Powerup : MonoBehaviour
                         player.AddLife();
                         break;
                     case 5:
-                        player.PowerBomb();
+                        player.FireBall();
                         break;
                 }
                                                 

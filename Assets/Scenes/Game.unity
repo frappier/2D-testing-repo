@@ -157,12 +157,11 @@ MonoBehaviour:
   _increasedSpeed: 2.5
   _speedBoostMultiplier: 2
   _ammoCount: 15
-  _powerBombCount: 0
   _laserPrefab: {fileID: 346341005711691269, guid: 608d7405e5d697c418aef799f207b8aa,
     type: 3}
   _tripleShotPrefab: {fileID: 1874502267526601222, guid: 103d21b6a2db4b149b3246393266a8f9,
     type: 3}
-  _powerBombShotprefab: {fileID: 4317385466671157134, guid: a37f3483bd220374f947e9d598f3e30d,
+  _fireBallprefab: {fileID: 2500380189374267679, guid: 4a05daaa135abc84eae83e3c72a0427c,
     type: 3}
   _shieldVisualizer: {fileID: 1391647464}
   _shieldVisualizer1: {fileID: 389388106}
@@ -260,7 +259,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06461072, y: 0.031903386}
+  m_Offset: {x: 0.010898054, y: 0.031903267}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -271,7 +270,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1816201, y: 4.0352736}
+  m_Size: {x: 2.6874638, y: 4.0352736}
   m_EdgeRadius: 0
 --- !u!82 &25130888
 AudioSource:
@@ -293,7 +292,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.66052276
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1815,7 +1814,7 @@ MonoBehaviour:
   - {fileID: 5315306851367203877, guid: 19920b7c02539744c917e7d7d06c90e8, type: 3}
   - {fileID: 2019776748010082753, guid: cb04d055e3ee772478a656d83ff69ee8, type: 3}
   - {fileID: 7937016918426119470, guid: 1f63f4f7181d51645a5b225a2141f76a, type: 3}
-  - {fileID: 5810345510087050341, guid: 51246907da65f884b92216ff5b91fd6d, type: 3}
+  - {fileID: 4564124098310910703, guid: 51246907da65f884b92216ff5b91fd6d, type: 3}
   _enemyContainer: {fileID: 1449869346}
   _stopSpawning: 0
 --- !u!4 &1655322070
@@ -2278,72 +2277,3 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1001 &7643244828146775121
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157129, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317385466671157134, guid: a37f3483bd220374f947e9d598f3e30d,
-        type: 3}
-      propertyPath: m_Name
-      value: PowerBomb_Shot
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a37f3483bd220374f947e9d598f3e30d, type: 3}
