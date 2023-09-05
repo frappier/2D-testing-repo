@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _ammoCount = 15;
     [SerializeField]
+    private int _fireBallShot;
+    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
@@ -39,7 +41,12 @@ public class Player : MonoBehaviour
     private GameObject _rightEngine;
     [SerializeField]
     private GameObject _leftEngine;
-
+        
+    [SerializeField]
+    private GameObject[] _enemiesArray;
+    
+    
+    
     private bool _isTripleshotActive = false;
     private bool _isShieldActive = false;
     private bool _isFireBallActive = false;
@@ -65,7 +72,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
-        
+                        
 
         if(_spawnManager == null)
         {
@@ -150,9 +157,10 @@ public class Player : MonoBehaviour
     {
         _nextFire = Time.time + _fireRate;
        
-        if (_isFireBallActive)
+        if (_isFireBallActive && _fireBallShot > 0)
         {
-            Instantiate(_fireBallprefab, transform.position + new Vector3(0, 2.0f, 0), Quaternion.identity);            
+            FireBallEngage();
+            _fireBallShot--;
         }
         else if (_isTripleshotActive && _ammoCount > 0)
         {
@@ -190,6 +198,7 @@ public class Player : MonoBehaviour
     public void FireBall()
     {
         _isFireBallActive = true;
+        _fireBallShot = 1;
         _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
         StartCoroutine(FireBallPowerDownRoutine());        
     }
@@ -198,6 +207,17 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isFireBallActive = false;
+    }
+
+    public void FireBallEngage()
+    {
+        _enemiesArray = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in _enemiesArray)
+        {
+                        
+            Destroy(enemy);
+        }
     }
 
 

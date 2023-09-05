@@ -157,6 +157,7 @@ MonoBehaviour:
   _increasedSpeed: 2.5
   _speedBoostMultiplier: 2
   _ammoCount: 15
+  _fireBallShot: 0
   _laserPrefab: {fileID: 346341005711691269, guid: 608d7405e5d697c418aef799f207b8aa,
     type: 3}
   _tripleShotPrefab: {fileID: 1874502267526601222, guid: 103d21b6a2db4b149b3246393266a8f9,
@@ -173,6 +174,9 @@ MonoBehaviour:
   _spawnManager: {fileID: 1655322069}
   _rightEngine: {fileID: 1877542984}
   _leftEngine: {fileID: 199999616}
+  _enemiesArray: []
+  _enemyPrefab: {fileID: 2399316776883048082, guid: c9fc55393b704774ab0a91cd3b7aafcd,
+    type: 3}
   _score: 0
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _powerupSoundClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
