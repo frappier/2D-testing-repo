@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     private Player _player;
     private Animator _enemyDestoyedAnim;
     private AudioSource _audioSource;
+    [SerializeField]
+    private GameObject _explosionPrefab;
     
     // Start is called before the first frame update
     void Start()
@@ -99,21 +101,14 @@ public class Enemy : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.0f);
         }
-        else if (other.tag == "PowerBomb")
-        {
-            Destroy(other.gameObject);
+    }
 
-            if (_player != null)
-            {
-                _player.AddScore(15);
-            }
-
-            _enemyDestoyedAnim.SetTrigger("OnEnemyDeath");
-            _enemySpeed = 0;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.0f);
-
-        }
+    public void FireBall()
+    {
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        _enemySpeed = 0;
+        _audioSource.Play();
+        Destroy(GetComponent<Collider2D>());
+        Destroy(gameObject);
     }
 }

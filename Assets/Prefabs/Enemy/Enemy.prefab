@@ -51,6 +51,8 @@ MonoBehaviour:
   _enemySpeed: 4
   _laserPrefab: {fileID: 976561163123316138, guid: 5ec2b60e2a7eb0645900071ecc3e4822,
     type: 3}
+  _explosionPrefab: {fileID: 5401101482868023252, guid: b54d8e9fe2eb199419d5bcaf379bb504,
+    type: 3}
 --- !u!212 &1216699257571318843
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -41,12 +41,11 @@ public class Player : MonoBehaviour
     private GameObject _rightEngine;
     [SerializeField]
     private GameObject _leftEngine;
-        
+       
     [SerializeField]
     private GameObject[] _enemiesArray;
     
-    
-    
+        
     private bool _isTripleshotActive = false;
     private bool _isShieldActive = false;
     private bool _isFireBallActive = false;
@@ -62,8 +61,8 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
 
     private UIManager _uiManager;
-    
-   
+
+       
     // Start is called before the first frame update
     void Start()
     {
@@ -71,10 +70,9 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        _audioSource = GetComponent<AudioSource>();
-                        
+        _audioSource = GetComponent<AudioSource>();        
 
-        if(_spawnManager == null)
+        if (_spawnManager == null)
         {
             Debug.LogError("The SpawnManager is NULL.");
         }
@@ -92,6 +90,8 @@ public class Player : MonoBehaviour
 
         _rightEngine.SetActive(false);
         _leftEngine.SetActive(false);
+
+
         
     }
 
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
     {
         _isFireBallActive = true;
         _fireBallShot = 1;
-        _audioSource.PlayOneShot(_laserSoundClip, 0.7f);
+        _audioSource.PlayOneShot(_powerupSoundClip);
         StartCoroutine(FireBallPowerDownRoutine());        
     }
 
@@ -215,8 +215,7 @@ public class Player : MonoBehaviour
 
         foreach (GameObject enemy in _enemiesArray)
         {
-                        
-            Destroy(enemy);
+            enemy.GetComponent<Enemy>().FireBall();            
         }
     }
 

@@ -175,11 +175,10 @@ MonoBehaviour:
   _rightEngine: {fileID: 1877542984}
   _leftEngine: {fileID: 199999616}
   _enemiesArray: []
-  _enemyPrefab: {fileID: 2399316776883048082, guid: c9fc55393b704774ab0a91cd3b7aafcd,
-    type: 3}
   _score: 0
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _powerupSoundClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
+  _enemy: {fileID: 2399316776883048082, guid: c9fc55393b704774ab0a91cd3b7aafcd, type: 3}
 --- !u!212 &25130885
 SpriteRenderer:
   m_ObjectHideFlags: 0
