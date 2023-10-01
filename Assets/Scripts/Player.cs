@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
             FireBallEngage();
             _fireBallShot--;
         }
-        else if (_isTripleshotActive && _ammoCount > 0)
+        else if (_isTripleshotActive && _ammoCount > 2)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _ammoCount -= 3;
