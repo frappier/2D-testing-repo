@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -41,11 +43,10 @@ public class Player : MonoBehaviour
     private GameObject _rightEngine;
     [SerializeField]
     private GameObject _leftEngine;
-       
+               
     [SerializeField]
     private GameObject[] _enemiesArray;
-    
-        
+            
     private bool _isTripleshotActive = false;
     private bool _isShieldActive = false;
     private bool _isFireBallActive = false;
@@ -61,6 +62,11 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
 
     private UIManager _uiManager;
+
+    [SerializeField]
+    private Slider _turboBoostSlider;
+     
+    
 
        
     // Start is called before the first frame update
@@ -91,8 +97,7 @@ public class Player : MonoBehaviour
         _rightEngine.SetActive(false);
         _leftEngine.SetActive(false);
 
-
-        
+        _turboBoostSlider.enabled = true;        
     }
 
     // Update is called once per frame
@@ -113,19 +118,25 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
                 
-        Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);   //putting the direction into a variable to use in the Translate
+        //Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);   //putting the direction into a variable to use in the Translate
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _uiManager._isturboBoostActive == true)
         {
-            _speed *= _increasedSpeed;
+            
+            transform.Translate(Vector3.right * horizontalInput * _speed * _increasedSpeed * Time.deltaTime);
+            transform.Translate(Vector3.up * verticalInput * _speed * _increasedSpeed * Time.deltaTime);
+            StartCoroutine(_uiManager.TurboBoostSliderDown());
+
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+
+        if (_uiManager._isturboBoostActive == false)
         {
-            _speed /= _increasedSpeed;
+            StartCoroutine(_uiManager.TurboBoostSliderUp());
         }
         
         
-        transform.Translate(direction * _speed * Time.deltaTime);
+        transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
+        transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
         
                       
         //Restricting on the Y axis using Math.Clamp
@@ -218,7 +229,6 @@ public class Player : MonoBehaviour
             enemy.GetComponent<Enemy>().FireBall();            
         }
     }
-
 
     public void SpeedBoost()
     {

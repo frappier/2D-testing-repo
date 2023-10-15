@@ -17,7 +17,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _gameOverText;
     [SerializeField]
-    private Text _restartLevelText;
+    private Text _restartLevelText;    
+    public Slider _turboBoostSlider;
+    [SerializeField]
+    private float _turboBoostSliderMaxValue = 100f;
+    public bool _isturboBoostActive = true;
 
     private GameManager _gameManager;
 
@@ -31,17 +35,20 @@ public class UIManager : MonoBehaviour
         _gameOverText.gameObject.SetActive(false);
         _restartLevelText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        _turboBoostSlider.value = _turboBoostSliderMaxValue;
 
         if (_gameManager == null)
         {
             Debug.Log("Game Manager is NULL");
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+
     }
 
     public void UpdateScore(int playerScore)
@@ -90,5 +97,32 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-       
+
+    public IEnumerator TurboBoostSliderDown()
+    {        
+        _turboBoostSlider.value -= 0.15f;
+        yield return new WaitForSeconds(1.5f);
+
+        if (_turboBoostSlider.value <= 0.0f)
+        {
+            _turboBoostSlider.value = 0.0f;
+            _isturboBoostActive = false;
+        }        
+    }
+
+    public IEnumerator TurboBoostSliderUp()
+    {
+        while (_turboBoostSlider.value < _turboBoostSliderMaxValue && _isturboBoostActive == false)
+        {
+            _turboBoostSlider.value += 0.15f;
+            yield return new WaitForSeconds(2.0f);
+
+            if (_turboBoostSlider.value == _turboBoostSliderMaxValue)
+            {
+                _isturboBoostActive = true;
+            }
+        }        
+        
+    }
+
 }
