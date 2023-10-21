@@ -267,7 +267,7 @@ MonoBehaviour:
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _powerupSoundClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
   _turboBoostSlider: {fileID: 17545042}
-  _isturboBoostActive: 0
+  _cameraShake: {fileID: 1896743533}
 --- !u!212 &25130885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1441,6 +1441,7 @@ MonoBehaviour:
   _restartLevelText: {fileID: 1110166209}
   _turboBoostSlider: {fileID: 17545042}
   _turboBoostSliderMaxValue: 100
+  _isturboBoostActive: 1
 --- !u!1001 &1197741836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2424,6 +2425,7 @@ GameObject:
   - component: {fileID: 1896743530}
   - component: {fileID: 1896743529}
   - component: {fileID: 1896743532}
+  - component: {fileID: 1896743533}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2556,3 +2558,49 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1896743533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896743528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3707c176d768385488c3613c5ddbd4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0021971464
+      value: 0
+      inSlope: 0.6376644
+      outSlope: 0.6376644
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.31004363
+      value: 0.19630274
+      inSlope: -0.068173304
+      outSlope: -0.068173304
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.44075468
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.28451473
+      outSlope: -0.28451473
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

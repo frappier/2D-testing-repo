@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private Text _restartLevelText;    
+
     public Slider _turboBoostSlider;
     [SerializeField]
     private float _turboBoostSliderMaxValue = 100f;
@@ -35,6 +36,7 @@ public class UIManager : MonoBehaviour
         _gameOverText.gameObject.SetActive(false);
         _restartLevelText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+
         _turboBoostSlider.value = _turboBoostSliderMaxValue;
 
         if (_gameManager == null)

@@ -65,6 +65,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Slider _turboBoostSlider;
+
+    [SerializeField]
+    private CameraShake _cameraShake;
      
     
 
@@ -118,8 +121,7 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
                 
-        //Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);   //putting the direction into a variable to use in the Translate
-
+        
         if (Input.GetKey(KeyCode.LeftShift) && _uiManager._isturboBoostActive == true)
         {
             
@@ -312,20 +314,27 @@ public class Player : MonoBehaviour
         if (_lives == 2)
         {
             _rightEngine.SetActive(true);
+            ShakeCamera();
         }
         else if (_lives == 1)
         {
             _leftEngine.SetActive(true);
+            ShakeCamera();
         } 
 
         _uiManager.UpdateLives(_lives);
                 
         if(_lives < 1)
         {
-            _spawnManager.IsPlayerDead();            
+            _spawnManager.IsPlayerDead(); 
             Destroy(this.gameObject);
             
         }
+    }
+
+    public void ShakeCamera()
+    {
+        StartCoroutine(_cameraShake.Shaking());
     }
 
 
